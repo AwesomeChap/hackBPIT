@@ -1,3 +1,2 @@
-// const net = await posenet.load();
-
-// const pose = await net.estimateSinglePose(image, imageScaleFactor, flipHorizontal, outputStride);
+// import * as posenet from '@tensorflow-models/posenet';
+// const net = (async()=>{await posenet.load()})();
