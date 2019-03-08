@@ -1,24 +1,41 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export default function(props){
-  return (
-    <div className="container">
+export default class App extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      counter : 3
+    }
+  }
 
-      <div className="app">
+  componentDidMount(){
+    setInterval(()=>{
+      if(this.state.counter > 0){
+        this.setState((prevState)=>{
+          return {
+            counter : prevState.counter - 1
+          }
+        })
+      }
+    },1000);
+  }
 
-        {/* <a href="#" id="start-camera" className="visible">Touch here to start the app.</a> */}
-        <video muted id="camera-stream" width="500" height="500"></video>
-        <canvas id="output"></canvas>
-        {/* <p id="error-message"></p>
-
-        <div className="controls">
-          <a href="#" id="delete-photo" title="Delete Photo" className="disabled"><i className="material-icons">delete</i></a>
-          <a href="#" id="take-photo" title="Take Photo"><i className="material-icons">camera_alt</i></a>
-          <a href="#" id="download-photo" download="selfie.png" title="Save Photo" className="disabled"><i className="material-icons">file_download</i></a>  
-        </div> */}
-
+  render(){
+    let counter = 0;
+    return (
+      <div className="outer-container">
+        {this.state.counter === 0 ? (
+          <div className="container">
+          <div className="app">
+            <video muted id="camera-stream" width="500" height="500"></video>
+            <canvas id="output"></canvas>
+          </div>
+        </div>
+        ):(
+          <div className="counter" >{this.state.counter}</div>
+        )}
       </div>
-    </div>
-  );
+    )
+  }
 }
 
