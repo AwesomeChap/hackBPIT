@@ -45,18 +45,83 @@ document.addEventListener('DOMContentLoaded', function () {
                   var flipHorizontal = false;
                   var outputStride = 16;
                   var imageElement = video;
-              
-                //   setInterval(()=>{
+                  var s=0;
+                  var rhwy,rhwx,lhwy,lhwx = 0;
+
+                  setTimeout(()=>{
                     posenet.load().then(function(net){
                       return net.estimateSinglePose(imageElement,imageScaleFactor,flipHorizontal,outputStride)}).then(function(pose){
-                          console.log(pose);
 
-                          axios.post('/data',{
-                              data : pose
-                          }).then(res => console.log(res)).catch(e => console.log(e));
+                          console.log(pose.keypoints[9].part);
+                          lhwx=pose.keypoints[9].position.x;
+                          lhwy=pose.keypoints[9].position.y;
+                          rhwx=pose.keypoints[10].position.x;
+                          rhwy=pose.keypoints[10].position.y;
+                          s=1;
+                          console.log(rhwy);
+                          console.log(lhwy);
+                          console.log(lhwx);
+                          console.log(rhwx);
+                        //   console.log(s);
+
+
+                   //function st(){
+                    alert("running");
+
+                 setInterval(()=>{
+                     posenet.load().then(function(net){
+                       return net.estimateSinglePose(imageElement,imageScaleFactor,flipHorizontal,outputStride)}).then(function(pose){
+ 
+                           console.log(pose.keypoints[9].part);
+ 
+                         //   if(pose.keypoints[9].score>.78){
+ 
+                             if(pose.keypoints[9].position.x>lhwx+15||pose.keypoints[9].position.x<lhwx-15){
+                                 alert("Left Wrist x axis prob");
+ 
+                             }
+                             if(pose.keypoints[9].position.y>lhwy+15||pose.keypoints[9].position.y<lhwy-15){
+                                 alert("Left Wrist y axis prob");
+ 
+                             }
+ 
+ 
+                         //   }
+                         //   else{
+                         //       alert("Camera not able detect left arm properly")
+                         //   }
+                         //  if(pose.keypoints[10].score>.78){
+                             if(pose.keypoints[9].position.x>rhwx+15||pose.keypoints[9].position.x<rhwx-15){
+                                 alert("Right Wrist x axis prob");
+ 
+                             }
+                             if(pose.keypoints[9].position.y>rhwy+15||pose.keypoints[9].position.y<rhwy-15){
+                                 alert("Right Wrist y axis prob");
+ 
+                             }
+                         //  }
+                         //  else{
+                         //     alert("Camera not able detect right arm properly")
+                         // }
+ 
+ 
+                           
+ 
+                         //   axios.post('/data',{
+                         //       data : pose
+                         //   }).then(res => console.log(res)).catch(e => console.log(e));
+                     
+                     })
+                   },1000);
+
+
+               // }
+
                     
                     })
-                //   },1000);
+                  },3000);
+
+              
                       
               };
 
@@ -65,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
           function (err) {
               displayErrorMessage("There was an error with accessing the camera stream: " + err.name, err);
           }
+          
       );
   }
 

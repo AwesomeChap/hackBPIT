@@ -15,13 +15,17 @@ app.get('/test',(req,res)=>{
   res.json({message : 'this is a test message'});
 })
 
+app.get('/datas',(req,res)=>{
+  res.sendFile(DATA_FILE);
+})
+
 app.post('/data',(req,res)=>{
   // console.log(req.body);
   const {data} = req.body;
   let readDataObj = [];
   fs.readFile(DATA_FILE,(err,readData)=>{
     readDataObj = JSON.parse(readData) || [];
-    console.log(readDataObj);
+    // console.log(readDataObj);
     readDataObj.push(data);
     fs.writeFile(DATA_FILE,JSON.stringify(readDataObj,null,2), ()=>{
       res.json({success : 'data written successfully'});
