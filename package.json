@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@tensorflow-models/posenet": "^1.0.0",
+    "@tensorflow/tfjs": "^1.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "parcel-bundler": "^1.12.0",
