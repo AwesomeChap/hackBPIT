@@ -24,16 +24,13 @@ export default class App extends Component{
     let counter = 0;
     return (
       <div className="outer-container">
-        {this.state.counter === 0 ? (
+          {this.state.counter && (<div className="counter" >{this.state.counter}</div>)}    
           <div className="container">
           <div className="app">
             <video muted id="camera-stream" width="500" height="500"></video>
             <canvas id="output"></canvas>
           </div>
         </div>
-        ):(
-          <div className="counter" >{this.state.counter}</div>
-        )}
       </div>
     )
   }
