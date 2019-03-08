@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
 
   // References to all the element we will need.
@@ -45,12 +46,17 @@ document.addEventListener('DOMContentLoaded', function () {
                   var outputStride = 16;
                   var imageElement = video;
               
-                  setInterval(()=>{
+                //   setInterval(()=>{
                     posenet.load().then(function(net){
                       return net.estimateSinglePose(imageElement,imageScaleFactor,flipHorizontal,outputStride)}).then(function(pose){
                           console.log(pose);
+
+                          axios.post('/data',{
+                              data : pose
+                          }).then(res => console.log(res)).catch(e => console.log(e));
+                    
                     })
-                  },1000);
+                //   },1000);
                       
               };
 
