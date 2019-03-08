@@ -67,7 +67,7 @@ h3{
 }
 
 .app video#camera-stream{
-  display: none;
+  /* display: none; */
   width: 100%;
 }
 

@@ -39,7 +39,19 @@ document.addEventListener('DOMContentLoaded', function () {
               // Play the video element to start the stream.
               video.play();
               video.onplay = function () {
-                  showVideo();
+                  // showVideo();
+                  var imageScaleFactor = 0.50;
+                  var flipHorizontal = false;
+                  var outputStride = 16;
+                  var imageElement = video;
+              
+                  setInterval(()=>{
+                    posenet.load().then(function(net){
+                      return net.estimateSinglePose(imageElement,imageScaleFactor,flipHorizontal,outputStride)}).then(function(pose){
+                          console.log(pose);
+                    })
+                  },1000);
+                      
               };
 
           },
@@ -138,11 +150,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // }
 
 
-  function showVideo() {
-      // hideUI();
-      video.classList.add("visible");
-      controls.classList.add("visible");
-  }
+  // function showVideo() {
+  //     // hideUI();
+  //     video.classList.add("visible");
+  //     controls.classList.add("visible");
+  // }
 
 
   // function displayErrorMessage(error_msg, error) {

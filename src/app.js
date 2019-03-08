@@ -7,7 +7,7 @@ export default function(props){
       <div className="app">
 
         {/* <a href="#" id="start-camera" className="visible">Touch here to start the app.</a> */}
-        <video muted id="camera-stream"></video>
+        <video muted id="camera-stream" width="500" height="500"></video>
 
         {/* <p id="error-message"></p>
 
