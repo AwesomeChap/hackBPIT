@@ -20,7 +20,6 @@ app.post('/data',(req,res)=>{
   const {data} = req.body;
   let readDataObj = [];
   fs.readFile(DATA_FILE,(err,readData)=>{
-    console.log(JSON.stringify(readData));
     readDataObj = JSON.parse(readData) || [];
     console.log(readDataObj);
     readDataObj.push(data);
