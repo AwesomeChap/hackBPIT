@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   var outputStride = 16;
                   var imageElement = video;
                   var s=0;
-                  var rhwy,rhwx,lhwy,lhwx = 0;
+                  var rhwy,rhwx,lhwy,lhwx,nose = 0;
 
                   setTimeout(()=>{
                     posenet.load().then(function(net){
@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                           lhwy=pose.keypoints[9].position.y;
                           rhwx=pose.keypoints[10].position.x;
                           rhwy=pose.keypoints[10].position.y;
+                          nose=pose.keypoints[0].position.y;
                           s=1;
                           console.log(rhwy);
                           console.log(lhwy);
@@ -76,13 +77,14 @@ document.addEventListener('DOMContentLoaded', function () {
  
                          //   if(pose.keypoints[9].score>.78){
  
-                             if(pose.keypoints[9].position.x>lhwx+15||pose.keypoints[9].position.x<lhwx-15){
+                             if(pose.keypoints[9].position.x>lhwx+25||pose.keypoints[9].position.x<lhwx-25){
                                  alert("Left Wrist x axis prob");
  
                              }
-                             if(pose.keypoints[9].position.y>lhwy+15||pose.keypoints[9].position.y<lhwy-15){
-                                 alert("Left Wrist y axis prob");
- 
+                             if(pose.keypoints[9].position.y<nose){
+                                if(pose.keypoints[9].position.y<lhwy-25){
+                                    alert("Left Wrist y axis prob");
+                                }
                              }
  
  
@@ -91,13 +93,14 @@ document.addEventListener('DOMContentLoaded', function () {
                          //       alert("Camera not able detect left arm properly")
                          //   }
                          //  if(pose.keypoints[10].score>.78){
-                             if(pose.keypoints[9].position.x>rhwx+15||pose.keypoints[9].position.x<rhwx-15){
+                             if(pose.keypoints[10].position.x>rhwx+25||pose.keypoints[10].position.x<rhwx-25){
                                  alert("Right Wrist x axis prob");
  
                              }
-                             if(pose.keypoints[9].position.y>rhwy+15||pose.keypoints[9].position.y<rhwy-15){
-                                 alert("Right Wrist y axis prob");
- 
+                             if(pose.keypoints[10].position.y<nose){
+                                if(pose.keypoints[10].position.y<rhwy-25){
+                                    alert("Right Wrist y axis prob");
+                                }
                              }
                          //  }
                          //  else{
