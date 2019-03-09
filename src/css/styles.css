@@ -131,7 +131,9 @@ body{
   display: inline-block;
   color: white;
   background-color: #333;
-  background-color: 0 0 20px #000;
+  /* background-color: 0 0 20px #000; */
+  margin: 5px;
+  box-shadow: 0 0 20px #000;
   padding: 10px 20px;
   border-radius: 5px 5px 5px 0px;
 }
@@ -153,8 +155,9 @@ body{
   color: rgb(255, 36, 36);
   text-align: center;
   background: #333;
-  box-shadow: 4px solid #444;
+  border-bottom: 4px solid #222;
   width: 100%;
   font-size: 1.5rem;
   padding: 10px 0;
+  margin-bottom: 20px;
 }
