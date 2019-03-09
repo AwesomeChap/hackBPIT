@@ -83,14 +83,14 @@ if (!navigator.getMedia) {
                                 //   if(pose.keypoints[9].score>.78){
 
                                 if (pose.keypoints[9].position.x > lhwx + 25 || pose.keypoints[9].position.x < lhwx - 25) {
-                                    errors.push('left wrist horizontaly');
+                                    errors.push('left wrist horizontally');
                                     // alert("Left Wrist x axis prob");
                                     document.getElementById('errors').innerHTML
 
                                 }
                                 if (pose.keypoints[9].position.y < nose) {
                                     if (pose.keypoints[9].position.y < lhwy - 25) {
-                                        errors.push('left wrist verticaly')
+                                        errors.push('left wrist vertically')
                                         // alert("Left Wrist y axis prob");
                                     }
                                 }

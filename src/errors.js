@@ -8,13 +8,19 @@ class Errors extends Component{
     }
   }
 
+  componentDidMount(){
+    setInterval(()=>{
+      let errors = localStorage.getItem("errors");
+      errors = JSON.parse(errors) || [];
+      this.setState({errors : errors});
+    },1000);
+  }
+
   render(){
     // let errors = document.getElementById('errors').innerHTML || '[]';
-    let errors = localStorage.getItem("errors");
-    errors = JSON.parse(errors) || [];
-    errors = errors.map((err)=>{
+    let errors = this.state.errors.map((err)=>{
       return(
-        <div className="err">{err}</div>
+        <div className="err">{err} wrong positioned</div>
       );
     })
     return(
