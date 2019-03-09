@@ -1,5 +1,4 @@
-// document.addEventListener('DOMContentLoaded', );
-window.onload = function (e) {
+document.addEventListener('DOMContentLoaded', function () {
 
     // localStorage.setItem(hello,'hello');
 
@@ -119,7 +118,8 @@ if (!navigator.getMedia) {
                                 // }
 
 
-                                document.getElementById('errors').innerHTML = JSON.stringify(errors);
+                                // document.getElementById('errors').innerHTML = JSON.stringify(errors);
+                                localStorage.setItem("errors",JSON.stringify(errors));
 
 
                                 //   axios.post('/data',{
@@ -148,4 +148,4 @@ if (!navigator.getMedia) {
 
     );
 }
-}
+});

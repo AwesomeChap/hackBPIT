@@ -44,8 +44,9 @@ export default class App extends Component{
               <div id="errors"></div>
               {/* <canvas id="output"></canvas> */}
           </div>
+          
         </div>
-        {/* <Errors/> */}
+        <Errors/>
       </>
     )
   }
