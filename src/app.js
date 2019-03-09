@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import errors from './camera';
 
 export default class App extends Component{
   constructor(props){
@@ -21,15 +22,24 @@ export default class App extends Component{
   }
 
   render(){
+
+    console.log(errors);
     let counter = 0;
     return (
       <div className="outer-container">
-          {this.state.counter && (<div className="counter" >{this.state.counter}</div>)}    
-          <div className="container">
+            {this.state.counter ? (
+            <div className="loading">
+              Calibrating Input 
+              <div className="loader" >
+                <div className="bar bar1"></div>
+                <div className="bar bar2"></div>
+                <div className="bar bar3"></div>
+              </div> 
+            </div>
+            ):( <div className="loaded">Caliberated</div> )}
           <div className="app">
             <video muted id="camera-stream" width="500" height="500"></video>
-            <canvas id="output"></canvas>
-          </div>
+            {/* <canvas id="output"></canvas> */}
         </div>
       </div>
     )

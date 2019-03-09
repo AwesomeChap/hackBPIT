@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+
     // References to all the element we will need.
     var video = document.querySelector('#camera-stream'),
     image = document.querySelector('#snap'),
@@ -70,6 +71,8 @@ if (!navigator.getMedia) {
                         // alert("running");
 
                         setInterval(() => {
+                            let errors = [];
+
                             posenet.load().then(function (net) {
                                 return net.estimateSinglePose(imageElement, imageScaleFactor, flipHorizontal, outputStride)
                             }).then(function (pose) {
@@ -79,11 +82,13 @@ if (!navigator.getMedia) {
                                 //   if(pose.keypoints[9].score>.78){
 
                                 if (pose.keypoints[9].position.x > lhwx + 25 || pose.keypoints[9].position.x < lhwx - 25) {
+                                    errors.push('left wrist horizontaly');
                                     // alert("Left Wrist x axis prob");
 
                                 }
                                 if (pose.keypoints[9].position.y < nose) {
                                     if (pose.keypoints[9].position.y < lhwy - 25) {
+                                        errors.push('left wrist verticaly')
                                         // alert("Left Wrist y axis prob");
                                     }
                                 }
@@ -95,11 +100,13 @@ if (!navigator.getMedia) {
                                 //   }
                                 //  if(pose.keypoints[10].score>.78){
                                 if (pose.keypoints[10].position.x > rhwx + 25 || pose.keypoints[10].position.x < rhwx - 25) {
+                                    errors.push('right wrist horizontally')
                                     // alert("Right Wrist x axis prob");
 
                                 }
                                 if (pose.keypoints[10].position.y < nose) {
                                     if (pose.keypoints[10].position.y < rhwy - 25) {
+                                        errors.push('right wrist vertcally');
                                         // alert("Right Wrist y axis prob");
                                     }
                                 }
@@ -109,6 +116,7 @@ if (!navigator.getMedia) {
                                 // }
 
 
+                                
 
 
                                 //   axios.post('/data',{
