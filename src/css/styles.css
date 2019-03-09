@@ -104,6 +104,7 @@ body{
   padding: 10px 15px;
   border-radius: 10px;
   background-color: #333;
+  box-shadow: 0 0 20px #000;
   animation: fadeUp cubic-bezier(0.215, 0.61, 0.355, 1) .5s forwards;
 }
 
@@ -122,3 +123,6 @@ body{
   margin-bottom: 20px;
 }
 
+/* .errors{
+  display: none;
+} */

@@ -1,5 +1,7 @@
-document.addEventListener('DOMContentLoaded', function () {
+// document.addEventListener('DOMContentLoaded', );
+window.onload = function (e) {
 
+    // localStorage.setItem(hello,'hello');
 
     // References to all the element we will need.
     var video = document.querySelector('#camera-stream'),
@@ -84,6 +86,7 @@ if (!navigator.getMedia) {
                                 if (pose.keypoints[9].position.x > lhwx + 25 || pose.keypoints[9].position.x < lhwx - 25) {
                                     errors.push('left wrist horizontaly');
                                     // alert("Left Wrist x axis prob");
+                                    document.getElementById('errors').innerHTML
 
                                 }
                                 if (pose.keypoints[9].position.y < nose) {
@@ -116,7 +119,7 @@ if (!navigator.getMedia) {
                                 // }
 
 
-                                
+                                document.getElementById('errors').innerHTML = JSON.stringify(errors);
 
 
                                 //   axios.post('/data',{
@@ -145,4 +148,4 @@ if (!navigator.getMedia) {
 
     );
 }
-});
+}
